@@ -4,8 +4,8 @@
 
 [HCP Terraform Documentation](https://developer.hashicorp.com/terraform/cloud-docs/agents/telemetry)
 
-### Overview
-To configure your agent to emit telemetry data, you must include the -otlp-address flag or TFC_AGENT_OTLP_ADDRESS environment variable. This should be set to the host:port address of an OpenTelemetry collector. This address should be a gRPC server running an OLTP collector.
+### Agent Configuration
+> To configure your agent to emit telemetry data, you must include the -otlp-address flag or TFC_AGENT_OTLP_ADDRESS environment variable. This should be set to the host:port address of an OpenTelemetry collector. This address should be a gRPC server running an OLTP collector.
 
 
 ## Example: Using Docker Containers
