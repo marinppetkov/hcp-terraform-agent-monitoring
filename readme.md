@@ -40,7 +40,11 @@ docker run -d --name prometh --network tfc_agent \
 
 ### 4. Start an HCP Terraform agent:
 ```bash
-docker run -d --name tfc-agent --network tfc_agent -e TFC_AGENT_TOKEN=<token> -e TFC_AGENT_NAME=local_agent -e TFC_AGENT_OTLP_ADDRESS=opentel:4317 hashicorp/tfc-agent:latest
+docker run -d --name tfc-agent --network tfc_agent \
+-e TFC_AGENT_TOKEN=<token> \
+-e TFC_AGENT_NAME=local_agent \
+-e TFC_AGENT_OTLP_ADDRESS=opentel:4317 \
+hashicorp/tfc-agent:latest
 ```
 
 **Notes**
