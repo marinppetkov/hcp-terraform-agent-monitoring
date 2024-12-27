@@ -1,0 +1,41 @@
+services:
+  opentelemetry:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: opentel
+    ports:
+      - "127.0.0.1:4317:4317/tcp"
+    volumes:
+      - ${PWD}/collector.yml:/etc/otelcol-contrib/config.yaml
+    networks: 
+      - tfc_agent_network
+  prometheus:
+    image: prom/prometheus
+    container_name: prometh
+    ports:
+      - "9090:9090"
+    volumes:
+      - ${PWD}/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - tfc_agent_network
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - ${PWD}/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yaml
+    networks:
+      - tfc_agent_network
+  tfc_agent:
+    image: hashicorp/tfc-agent
+    container_name: tfc-agent
+    environment:
+      - TFC_AGENT_TOKEN=${AGENT_TOKEN}
+      - TFC_AGENT_NAME=${TFC_AGENT_NAME}
+      - TFC_AGENT_OTLP_ADDRESS=opentel:4317
+    networks:
+      - tfc_agent_network
+networks:
+  tfc_agent_network:
+    name: ${DOCKER_NETWORK}
+    driver: bridge

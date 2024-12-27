@@ -1,0 +1,7 @@
+#!/bin/bash
+export AGENT_TOKEN=${agent_token}
+cd /home/${username}/docker-compose
+while ! (docker compose -f compose.yaml up -d  >/dev/null 2>&1); do
+    echo "Wait for all docker components to be installed"
+    sleep 5
+done
