@@ -1,0 +1,4 @@
+agent_token = "agent token"
+address_prefix = "*"
+resource_group_name="tfc_agent_with_monitoring"
+location = "West Europe"
